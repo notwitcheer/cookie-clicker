@@ -1,6 +1,18 @@
 import './index.css'
+import {
+  ClickButton,
+  ScoreDisplay,
+  RegisterButton,
+  LeaderboardTable,
+  PlayerRank,
+  ConnectButton
+} from './components'
+import { useGameStatus, useIsRegistered } from './hooks'
 
 function App() {
+  const { isConnected } = useGameStatus()
+  const { isRegistered } = useIsRegistered()
+
   return (
     <div className="game-container safe-area">
       <header className="text-center mb-8">
@@ -17,28 +29,47 @@ function App() {
         {/* Game Section */}
         <section className="flex-1 text-center">
           <div className="leaderboard-card mb-6">
-            <div className="score-display mb-4">
-              0 Clicks
-            </div>
-            <p className="text-gray-600 mb-6">
-              Connect your wallet to start clicking!
-            </p>
+            {isConnected && <ScoreDisplay className="mb-4" />}
 
-            {/* Placeholder Click Button */}
-            <button
-              className="click-button mobile-friendly w-48 h-48 rounded-full text-2xl font-bold"
-              disabled
-            >
-              🍪
-              <div className="text-sm mt-2">Click Me!</div>
-            </button>
+            {!isConnected && (
+              <div className="score-display mb-4">
+                0 Clicks
+              </div>
+            )}
+
+            {isConnected && <PlayerRank className="mb-4 justify-center" />}
+
+            {isConnected && !isRegistered && (
+              <div className="mb-6">
+                <RegisterButton />
+              </div>
+            )}
+
+            {isConnected && isRegistered && (
+              <div className="mb-6">
+                <ClickButton className="w-48 h-48 rounded-full text-2xl font-bold" />
+              </div>
+            )}
+
+            {!isConnected && (
+              <>
+                <p className="text-gray-600 mb-6">
+                  Connect your wallet to start clicking!
+                </p>
+                <button
+                  className="click-button mobile-friendly w-48 h-48 rounded-full text-2xl font-bold opacity-50 cursor-not-allowed"
+                  disabled
+                >
+                  🍪
+                  <div className="text-sm mt-2">Click Me!</div>
+                </button>
+              </>
+            )}
           </div>
 
           {/* Wallet Connection */}
           <div className="text-center">
-            <button className="wallet-button">
-              Connect Wallet
-            </button>
+            <ConnectButton />
             <p className="text-sm text-gray-500 mt-2">
               Need testnet ETH? Visit the{' '}
               <a
@@ -55,31 +86,7 @@ function App() {
 
         {/* Leaderboard Section */}
         <section className="flex-1 w-full lg:w-auto">
-          <div className="leaderboard-card">
-            <h2 className="text-2xl font-bold mb-6 text-center">
-              🏆 Leaderboard
-            </h2>
-
-            <div className="text-center text-gray-500 py-8">
-              <p>No players yet!</p>
-              <p className="text-sm mt-2">Be the first to click and claim the top spot.</p>
-            </div>
-
-            {/* Stats Section */}
-            <div className="border-t pt-4 mt-6">
-              <h3 className="font-semibold mb-3">Global Stats</h3>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <div className="text-2xl font-bold text-primary-600">0</div>
-                  <div className="text-gray-600">Total Clicks</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-accent-600">0</div>
-                  <div className="text-gray-600">Total Players</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <LeaderboardTable />
         </section>
       </main>
 

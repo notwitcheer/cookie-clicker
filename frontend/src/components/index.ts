@@ -6,3 +6,6 @@ export * from './Leaderboard'
 
 // Wallet components
 export * from './Wallet'
+
+// Modal components
+export * from './Modal'

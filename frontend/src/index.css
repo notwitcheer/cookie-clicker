@@ -61,6 +61,61 @@
   .game-container {
     @apply container mx-auto px-4 py-8;
     @apply min-h-screen flex flex-col items-center justify-center;
+    @apply select-none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Re-enable text selection for important elements */
+  .game-container a,
+  .game-container .error-message,
+  .game-container .wallet-address,
+  .game-container .selectable-text {
+    @apply select-text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+
+  /* Click ripple effect animation */
+  .click-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-effect 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+  }
+
+  @keyframes ripple-effect {
+    0% {
+      transform: scale(0);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  /* Enhanced click animation */
+  .animate-click {
+    animation: click-bounce 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  @keyframes click-bounce {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 
   /* Mobile optimizations */

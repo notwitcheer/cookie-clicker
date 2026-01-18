@@ -114,11 +114,3 @@ export function ConnectButton({ className = '' }: ConnectButtonProps) {
   )
 }
 
-// Simple version for when you just need basic connect/disconnect
-export function SimpleConnectButton({ className = '' }: ConnectButtonProps) {
-  return (
-    <div className={className}>
-      <RainbowConnectButton />
-    </div>
-  )
-}

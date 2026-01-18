@@ -1,17 +1,59 @@
+import { useState, useEffect, useCallback } from 'react'
 import './index.css'
+import { trackAction } from './lib/errorTracking'
 import {
   ClickButton,
   ScoreDisplay,
   RegisterButton,
   LeaderboardTable,
   PlayerRank,
-  ConnectButton
+  ConnectButton,
+  OnboardingModal
 } from './components'
 import { useGameStatus, useIsRegistered } from './hooks'
 
 function App() {
   const { isConnected } = useGameStatus()
   const { isRegistered } = useIsRegistered()
+
+  // Check if user has seen onboarding before - using useState initializer to avoid effect
+  const [showOnboarding, setShowOnboarding] = useState(() => {
+    const hasSeenOnboarding = localStorage.getItem('megaeth-clicker-onboarding-seen')
+    return !hasSeenOnboarding
+  })
+
+  const handleOnboardingClose = useCallback(() => {
+    setShowOnboarding(false)
+    localStorage.setItem('megaeth-clicker-onboarding-seen', 'true')
+  }, [])
+
+  const handleShowOnboarding = useCallback(() => {
+    trackAction('Show Onboarding Modal', {
+      component: 'App'
+    })
+    setShowOnboarding(true)
+  }, [])
+
+  // Track wallet connection state changes
+  useEffect(() => {
+    if (isConnected) {
+      trackAction('Wallet Connected', {
+        component: 'App',
+        additional: { isRegistered }
+      })
+    }
+  }, [isConnected, isRegistered])
+
+  // Track app initialization
+  useEffect(() => {
+    trackAction('App Initialized', {
+      component: 'App',
+      additional: {
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent
+      }
+    })
+  }, [])
 
   return (
     <div className="game-container safe-area">
@@ -94,6 +136,12 @@ function App() {
       <footer className="mt-12 text-center text-sm text-gray-500">
         <p>Built on MegaETH • Every click is on-chain • Open Source</p>
         <div className="mt-2 space-x-4">
+          <button
+            onClick={handleShowOnboarding}
+            className="hover:text-primary-600 underline"
+          >
+            Tutorial
+          </button>
           <a href="#" className="hover:text-primary-600">About</a>
           <a href="#" className="hover:text-primary-600">GitHub</a>
           <a href="https://docs.megaeth.com/" target="_blank" rel="noopener noreferrer" className="hover:text-primary-600">
@@ -101,6 +149,12 @@ function App() {
           </a>
         </div>
       </footer>
+
+      {/* Onboarding Modal */}
+      <OnboardingModal
+        isOpen={showOnboarding}
+        onClose={handleOnboardingClose}
+      />
     </div>
   )
 }

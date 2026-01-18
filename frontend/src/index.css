@@ -2,60 +2,122 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom base styles for the game */
+/* 🍪 Delicious Cookie Clicker Base Styles 🍪 */
 @layer base {
   html {
     font-family: 'Inter', system-ui, sans-serif;
   }
 
   body {
-    @apply bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen;
-    @apply text-gray-900 antialiased;
+    @apply bg-bakery-warmth min-h-screen;
+    @apply text-primary-900 antialiased;
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(255, 251, 235, 0.8) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(254, 243, 199, 0.6) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(253, 230, 138, 0.4) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
   }
 }
 
-/* Custom component styles */
+/* 🧁 Delicious Component Styles 🧁 */
 @layer components {
   .click-button {
     @apply relative overflow-hidden;
-    @apply bg-gradient-to-r from-primary-500 to-primary-600;
-    @apply hover:from-primary-600 hover:to-primary-700;
-    @apply active:from-primary-700 active:to-primary-800;
-    @apply transform transition-all duration-75 ease-out;
-    @apply shadow-lg hover:shadow-xl;
-    @apply text-white font-bold;
+    @apply bg-gradient-to-r from-caramel-400 to-accent-500;
+    @apply hover:from-caramel-500 hover:to-accent-600;
+    @apply active:from-caramel-600 active:to-accent-700;
+    @apply transform transition-all duration-150 ease-out;
+    @apply shadow-cookie hover:shadow-caramel;
+    @apply text-cream-50 font-bold;
     @apply select-none touch-manipulation;
+    @apply border-4 border-accent-300;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .click-button::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .click-button:hover {
+    @apply animate-wiggle;
+    transform: scale(1.05);
   }
 
   .click-button:active {
     @apply scale-95;
+    @apply animate-click;
   }
 
   .leaderboard-card {
-    @apply bg-white/80 backdrop-blur-sm border border-gray-200;
-    @apply rounded-xl shadow-lg p-6;
+    @apply bg-cream-50/90 backdrop-blur-sm border-2 border-accent-200;
+    @apply rounded-2xl shadow-warm p-6;
+    @apply relative overflow-hidden;
+  }
+
+  .leaderboard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f59e0b, #fb923c, #f59e0b);
+    opacity: 0.7;
   }
 
   .score-display {
-    @apply text-4xl font-bold text-gray-800;
-    @apply bg-gradient-to-r from-accent-400 to-accent-500;
+    @apply text-5xl font-bold;
+    @apply bg-gradient-to-r from-caramel-600 to-accent-600;
     @apply bg-clip-text text-transparent;
+    @apply drop-shadow-lg;
+    font-family: 'Georgia', serif;
+    text-shadow: 2px 2px 4px rgba(217, 119, 6, 0.1);
   }
 
   .wallet-button {
-    @apply bg-gradient-to-r from-indigo-500 to-purple-600;
-    @apply hover:from-indigo-600 hover:to-purple-700;
-    @apply text-white font-medium px-4 py-2 rounded-lg;
+    @apply bg-gradient-to-r from-cherry-500 to-cherry-600;
+    @apply hover:from-cherry-600 hover:to-cherry-700;
+    @apply text-white font-semibold px-6 py-3 rounded-xl;
     @apply transition-all duration-200 ease-out;
     @apply shadow-md hover:shadow-lg;
+    @apply border-2 border-cherry-400 hover:border-cherry-500;
+  }
+
+  .wallet-button:hover {
+    @apply animate-float;
+    transform: translateY(-2px);
   }
 }
 
 /* Utility classes for game-specific styles */
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-primary-600 to-purple-600;
+    @apply bg-gradient-to-r from-caramel-600 via-accent-500 to-primary-700;
     @apply bg-clip-text text-transparent;
+    @apply drop-shadow-sm;
+    font-weight: 800;
   }
 
   .game-container {
@@ -84,7 +146,7 @@
   .click-ripple {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.6);
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.8) 0%, rgba(251, 146, 60, 0.4) 50%, transparent 100%);
     transform: scale(0);
     animation: ripple-effect 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     pointer-events: none;
@@ -93,29 +155,58 @@
   @keyframes ripple-effect {
     0% {
       transform: scale(0);
-      opacity: 0.8;
+      opacity: 0.9;
+    }
+    50% {
+      opacity: 0.6;
     }
     100% {
-      transform: scale(2);
+      transform: scale(3);
       opacity: 0;
     }
   }
 
-  /* Enhanced click animation */
+  /* 🎉 Enhanced Cookie Click Animation 🎉 */
   .animate-click {
-    animation: click-bounce 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: cookie-chomp 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
-  @keyframes click-bounce {
+  @keyframes cookie-chomp {
     0% {
-      transform: scale(1);
+      transform: scale(1) rotate(0deg);
     }
-    50% {
-      transform: scale(1.05);
+    25% {
+      transform: scale(1.1) rotate(-2deg);
+    }
+    75% {
+      transform: scale(0.95) rotate(1deg);
     }
     100% {
-      transform: scale(1);
+      transform: scale(1) rotate(0deg);
     }
+  }
+
+  /* 🍯 Fun Hover Effects 🍯 */
+  .cookie-hover:hover {
+    @apply animate-cookie-spin;
+  }
+
+  .bakery-card {
+    @apply bg-gradient-to-br from-cream-50 to-accent-50;
+    @apply border-2 border-accent-200;
+    @apply rounded-2xl shadow-warm;
+    @apply backdrop-blur-sm;
+    position: relative;
+  }
+
+  .bakery-card::after {
+    content: '🍪';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    opacity: 0.6;
+    transform: rotate(15deg);
   }
 
   /* Mobile optimizations */
@@ -131,4 +222,58 @@
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
   }
+
+  /* 🎨 Fun Typography Styles 🎨 */
+  .cookie-title {
+    @apply text-gradient;
+    font-family: 'Georgia', serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-shadow: 2px 2px 4px rgba(217, 119, 6, 0.1);
+  }
+
+  .bakery-text {
+    @apply text-primary-800;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .fun-button {
+    @apply transition-all duration-200 ease-out;
+    @apply transform hover:scale-105 active:scale-95;
+  }
+
+  /* 🌟 Success States 🌟 */
+  .success-glow {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.5),
+                0 0 40px rgba(34, 197, 94, 0.3),
+                0 0 60px rgba(34, 197, 94, 0.1);
+  }
+
+  .error-shake {
+    animation: error-shake 0.5s ease-in-out;
+  }
+
+  @keyframes error-shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+}
+
+/* 🎭 Custom Scrollbar for that cozy feel 🎭 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fef3c7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f59e0b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d97706;
 }

@@ -58,8 +58,8 @@ function App() {
   return (
     <div className="game-container safe-area">
       <header className="text-center mb-8">
-        <h1 className="text-6xl font-bold cookie-title mb-4 animate-float">
-          🍪 MegaETH Cookie Clicker 🍪
+        <h1 className="text-6xl font-bold cookie-title mb-4 animate-float leading-tight tracking-wide">
+          <span className="cookie-emoji">🍪</span> MegaETH Cookie Clicker <span className="cookie-emoji">🍪</span>
         </h1>
         <p className="text-lg bakery-text max-w-2xl mx-auto leading-relaxed">
           Welcome to the <span className="font-semibold text-caramel-600">sweetest</span> corner of Web3! 🧁<br/>
@@ -69,10 +69,10 @@ function App() {
         </p>
       </header>
 
-      <main className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-6xl">
+      <main className="flex flex-col xl:flex-row items-start justify-center gap-6 w-full max-w-7xl">
         {/* Game Section */}
-        <section className="flex-1 text-center">
-          <div className="bakery-card mb-6">
+        <section className="flex-1 w-full max-w-md xl:max-w-none text-center">
+          <div className="bakery-card mb-6 min-h-[400px] flex flex-col justify-between p-8">
             {isConnected && <ScoreDisplay className="mb-4" />}
 
             {!isConnected && (
@@ -97,18 +97,19 @@ function App() {
 
             {!isConnected && (
               <>
-                <p className="text-gray-600 mb-6">
-                  Connect your wallet to start clicking!
+                <p className="bakery-text mb-6">
+                  Connect your wallet to start clicking! 🚀
                 </p>
                 <button
-                  className="click-button mobile-friendly w-48 h-48 rounded-full text-2xl font-bold opacity-50 cursor-not-allowed relative"
+                  className="click-button mobile-friendly w-48 h-48 rounded-full text-2xl font-bold opacity-60 cursor-not-allowed relative grayscale"
                   disabled
                   title="Connect your wallet first! 🦊"
                 >
-                  🍪
-                  <div className="text-sm mt-2">Click Me!</div>
-                  <div className="absolute inset-0 bg-primary-200/30 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <span className="text-primary-700 font-semibold text-sm">🔒 Locked</span>
+                  <div className="text-6xl mb-2 opacity-50">🔒</div>
+                  <div className="text-sm font-medium text-primary-600">Connect Wallet</div>
+                  <div className="text-xs text-primary-500 mt-1">to unlock clicking!</div>
+                  <div className="absolute -top-2 -right-2 bg-caramel-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
+                    🚫 Locked
                   </div>
                 </button>
               </>
@@ -136,7 +137,7 @@ function App() {
         </section>
 
         {/* Leaderboard Section */}
-        <section className="flex-1 w-full lg:w-auto">
+        <section className="flex-1 w-full max-w-md xl:max-w-none">
           <LeaderboardTable />
         </section>
       </main>

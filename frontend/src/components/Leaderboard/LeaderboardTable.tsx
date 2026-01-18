@@ -39,34 +39,34 @@ export function LeaderboardTable({
 
   if (error) {
     return (
-      <div className={`leaderboard-card ${className}`}>
+      <div className={`bakery-card min-h-[400px] flex flex-col ${className}`}>
         <h2 className="text-2xl font-bold mb-6 text-center">
           🏆 Leaderboard
         </h2>
-        <div className="text-center text-red-500 py-8">
-          <p>Failed to load leaderboard</p>
-          <p className="text-sm mt-2">Check your connection and try again</p>
+        <div className="text-center text-cherry-600 py-8">
+          <p className="font-semibold">Failed to load leaderboard</p>
+          <p className="text-sm mt-2 bakery-text">Check your connection and try again</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className={`leaderboard-card ${className}`}>
+    <div className={`bakery-card min-h-[400px] flex flex-col ${className}`}>
       <h2 className="text-2xl font-bold mb-6 text-center">
         🏆 Leaderboard
       </h2>
 
       {isLoading && (
-        <div className="text-center text-gray-500 py-8">
+        <div className="text-center bakery-text py-8">
           <div className="animate-pulse">Loading leaderboard...</div>
         </div>
       )}
 
       {!isLoading && displayedLeaderboard.length === 0 && (
-        <div className="text-center text-gray-500 py-8">
-          <p>No players yet!</p>
-          <p className="text-sm mt-2">Be the first to click and claim the top spot.</p>
+        <div className="text-center bakery-text py-8">
+          <p className="font-semibold">No players yet!</p>
+          <p className="text-sm mt-2 text-caramel-600">Be the first to click and claim the top spot. 🚀</p>
         </div>
       )}
 
@@ -78,17 +78,17 @@ export function LeaderboardTable({
               className={`
                 flex items-center justify-between p-3 rounded-lg
                 ${entry.rank <= 3
-                  ? 'bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200'
-                  : 'bg-gray-50 hover:bg-gray-100'
+                  ? 'bg-gradient-to-r from-accent-50 to-caramel-50 border-2 border-accent-200'
+                  : 'bg-cream-50/70 hover:bg-accent-50/50'
                 }
-                transition-colors
+                transition-colors shadow-sm
               `}
             >
               <div className="flex items-center gap-3">
                 <span
                   className={`
                     text-lg font-bold
-                    ${entry.rank <= 3 ? 'text-amber-600' : 'text-gray-600'}
+                    ${entry.rank <= 3 ? 'text-caramel-600' : 'text-primary-600'}
                   `}
                 >
                   {getRankIcon(entry.rank)}
@@ -98,7 +98,7 @@ export function LeaderboardTable({
                     {formatAddress(entry.address)}
                   </div>
                   {entry.rank <= 3 && (
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-caramel-500">
                       {entry.rank === 1 ? 'Champion'
                        : entry.rank === 2 ? 'Runner-up'
                        : 'Third place'}
@@ -108,7 +108,7 @@ export function LeaderboardTable({
               </div>
               <div className={`
                 font-bold text-lg
-                ${entry.rank <= 3 ? 'text-amber-600' : 'text-gray-800'}
+                ${entry.rank <= 3 ? 'text-accent-600' : 'text-primary-700'}
               `}>
                 {formatScore(entry.score)}
               </div>
@@ -120,33 +120,33 @@ export function LeaderboardTable({
       {/* Global Stats */}
       {showStats && (
         <div className="border-t pt-4 mt-6">
-          <h3 className="font-semibold mb-3">Global Stats</h3>
+          <h3 className="font-semibold mb-3 bakery-text">Global Stats</h3>
           <div className="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <div className={`
+                text-2xl font-bold text-caramel-600
+                ${isLoading ? 'animate-pulse' : ''}
+              `}>
+                {isLoading ? '...' : formatScore(totalClicks)}
+              </div>
+              <div className="bakery-text">Total Clicks</div>
+            </div>
             <div>
               <div className={`
                 text-2xl font-bold text-primary-600
                 ${isLoading ? 'animate-pulse' : ''}
               `}>
-                {isLoading ? '...' : formatScore(totalClicks)}
-              </div>
-              <div className="text-gray-600">Total Clicks</div>
-            </div>
-            <div>
-              <div className={`
-                text-2xl font-bold text-accent-600
-                ${isLoading ? 'animate-pulse' : ''}
-              `}>
                 {isLoading ? '...' : totalPlayers.toLocaleString()}
               </div>
-              <div className="text-gray-600">Total Players</div>
+              <div className="bakery-text">Total Players</div>
             </div>
           </div>
         </div>
       )}
 
       {/* Refresh indicator */}
-      <div className="text-xs text-gray-400 text-center mt-4">
-        Updates every 3 seconds
+      <div className="text-xs text-primary-500 text-center mt-4">
+        🔄 Updates every 3 seconds
       </div>
     </div>
   )

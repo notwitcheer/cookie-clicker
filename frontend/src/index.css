@@ -97,17 +97,17 @@
   }
 
   .wallet-button {
-    @apply bg-gradient-to-r from-cherry-500 to-cherry-600;
-    @apply hover:from-cherry-600 hover:to-cherry-700;
+    @apply bg-gradient-to-r from-caramel-500 to-accent-500;
+    @apply hover:from-caramel-600 hover:to-accent-600;
     @apply text-white font-semibold px-6 py-3 rounded-xl;
     @apply transition-all duration-200 ease-out;
-    @apply shadow-md hover:shadow-lg;
-    @apply border-2 border-cherry-400 hover:border-cherry-500;
+    @apply shadow-warm hover:shadow-caramel;
+    @apply border-2 border-accent-300 hover:border-caramel-400;
   }
 
   .wallet-button:hover {
     @apply animate-float;
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.02);
   }
 }
 
@@ -230,6 +230,33 @@
     font-weight: 800;
     letter-spacing: -0.02em;
     text-shadow: 2px 2px 4px rgba(217, 119, 6, 0.1);
+  }
+
+  .cookie-emoji {
+    display: inline-block;
+    animation: cookie-bob 2s ease-in-out infinite;
+    font-size: 1.1em;
+    filter: drop-shadow(0 2px 4px rgba(217, 119, 6, 0.3));
+  }
+
+  .cookie-emoji:first-child {
+    animation-delay: 0s;
+  }
+
+  .cookie-emoji:last-child {
+    animation-delay: 1s;
+  }
+
+  @keyframes cookie-bob {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-3px) rotate(-2deg);
+    }
+    75% {
+      transform: translateY(-1px) rotate(1deg);
+    }
   }
 
   .bakery-text {

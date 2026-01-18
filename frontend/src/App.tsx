@@ -58,8 +58,10 @@ function App() {
   return (
     <div className="game-container safe-area">
       <header className="text-center mb-8">
-        <h1 className="text-6xl font-bold cookie-title mb-4 animate-float leading-tight tracking-wide">
-          <span className="cookie-emoji">🍪</span> MegaETH Cookie Clicker <span className="cookie-emoji">🍪</span>
+        <h1 className="text-6xl font-bold mb-4 animate-float leading-tight tracking-wide">
+          <span className="cookie-emoji">🍪</span>{' '}
+          <span className="cookie-title">MegaETH Cookie Clicker</span>{' '}
+          <span className="cookie-emoji">🍪</span>
         </h1>
         <p className="text-lg bakery-text max-w-2xl mx-auto leading-relaxed">
           Welcome to the <span className="font-semibold text-caramel-600">sweetest</span> corner of Web3! 🧁<br/>
@@ -117,9 +119,11 @@ function App() {
           </div>
 
           {/* Wallet Connection */}
-          <div className="text-center">
-            <ConnectButton />
-            <div className="mt-4 p-3 bg-accent-50/50 rounded-xl border border-accent-200">
+          <div className="text-center flex flex-col items-center">
+            <div className="mb-4">
+              <ConnectButton />
+            </div>
+            <div className="p-4 bg-accent-50/50 rounded-xl border border-accent-200 max-w-sm">
               <p className="text-sm bakery-text">
                 🚰 Need testnet ETH? Visit the{' '}
                 <a

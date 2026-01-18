@@ -235,15 +235,16 @@
   .cookie-emoji {
     display: inline-block;
     animation: cookie-bob 2s ease-in-out infinite;
-    font-size: 1.1em;
+    font-size: 1.2em;
     filter: drop-shadow(0 2px 4px rgba(217, 119, 6, 0.3));
+    transform-origin: center;
   }
 
-  .cookie-emoji:first-child {
+  .cookie-emoji:nth-child(1) {
     animation-delay: 0s;
   }
 
-  .cookie-emoji:last-child {
+  .cookie-emoji:nth-child(3) {
     animation-delay: 1s;
   }
 

@@ -71,9 +71,9 @@ function App() {
         </p>
       </header>
 
-      <main className="flex flex-col xl:flex-row items-start justify-center gap-6 w-full max-w-7xl">
+      <main className="flex flex-col xl:flex-row items-center xl:items-start justify-center gap-6 w-full max-w-7xl">
         {/* Game Section */}
-        <section className="flex-1 w-full max-w-md xl:max-w-none text-center">
+        <section className="flex-1 w-full xl:max-w-md text-center">
           <div className="bakery-card mb-6 min-h-[400px] flex flex-col justify-between p-8">
             {isConnected && <ScoreDisplay className="mb-4" />}
 
@@ -124,7 +124,7 @@ function App() {
               <ConnectButton />
             </div>
             <div className="p-4 bg-accent-50/50 rounded-xl border border-accent-200 max-w-sm">
-              <p className="text-sm bakery-text">
+              <p className="text-sm bakery-text text-center">
                 🚰 Need testnet ETH? Visit the{' '}
                 <a
                   href="https://testnet.megaeth.com/#2"

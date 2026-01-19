@@ -15,7 +15,7 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
         <div className="space-y-4">
           <p>This is the world's first fully on-chain cookie clicker game!</p>
           <p>Every click you make sends a real transaction to the MegaETH blockchain.</p>
-          <p className="text-primary-600 font-semibold">
+          <p className="text-caramel-600 font-semibold">
             Thanks to MegaETH's lightning-fast 10ms block times, each click feels instant!
           </p>
         </div>
@@ -39,14 +39,14 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
       content: (
         <div className="space-y-4">
           <p>You'll need some testnet ETH to pay for transaction fees.</p>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <p className="font-semibold text-blue-800">Free Testnet ETH:</p>
-            <p className="text-blue-700">Visit the MegaETH faucet to get 0.005 ETH</p>
+          <div className="bg-accent-50 border border-accent-200 rounded-lg p-4">
+            <p className="font-semibold text-accent-800">Free Testnet ETH:</p>
+            <p className="text-accent-700">Visit the MegaETH faucet to get 0.005 ETH</p>
             <a
               href="https://testnet.megaeth.com/#2"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-block mt-2 px-4 py-2 bg-caramel-500 text-white rounded-lg hover:bg-caramel-600 transition-colors"
             >
               Open Faucet →
             </a>
@@ -78,9 +78,9 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
             <li>Your score is stored permanently on-chain</li>
             <li>Compete on the global leaderboard!</li>
           </ul>
-          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-4">
-            <p className="text-purple-800 font-semibold">💡 Pro Tip:</p>
-            <p className="text-purple-700">The faster you click, the higher you'll climb the leaderboard!</p>
+          <div className="bg-gradient-to-r from-cream-50 to-accent-50 border border-caramel-200 rounded-lg p-4">
+            <p className="text-caramel-800 font-semibold">💡 Pro Tip:</p>
+            <p className="text-caramel-700">The faster you click, the higher you'll climb the leaderboard!</p>
           </div>
         </div>
       )
@@ -91,17 +91,17 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
         <div className="space-y-4">
           <p className="text-lg font-semibold">You're all set to start playing!</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-              <h4 className="font-semibold text-green-800">What makes this special:</h4>
-              <ul className="list-disc list-inside text-green-700 space-y-1">
+            <div className="bg-mint-50 border border-mint-200 rounded-lg p-3">
+              <h4 className="font-semibold text-mint-800">What makes this special:</h4>
+              <ul className="list-disc list-inside text-mint-700 space-y-1">
                 <li>Fully decentralized</li>
                 <li>Transparent scoring</li>
                 <li>Real-time blockchain gaming</li>
               </ul>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-              <h4 className="font-semibold text-blue-800">Need help?</h4>
-              <ul className="list-disc list-inside text-blue-700 space-y-1">
+            <div className="bg-cream-50 border border-accent-200 rounded-lg p-3">
+              <h4 className="font-semibold text-caramel-800">Need help?</h4>
+              <ul className="list-disc list-inside text-caramel-700 space-y-1">
                 <li>Check the MegaETH docs</li>
                 <li>Ask in Discord</li>
                 <li>Follow @megaeth_labs</li>
@@ -137,7 +137,7 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
       <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-primary-500 to-purple-600 text-white p-6">
+        <div className="bg-gradient-to-r from-caramel-500 to-accent-600 text-white p-6">
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-bold">{steps[currentStep].title}</h2>
             <button
@@ -197,7 +197,7 @@ export function OnboardingModal({ isOpen, onClose }: OnboardingModalProps) {
             )}
             <button
               onClick={nextStep}
-              className="px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition-colors"
+              className="px-6 py-2 bg-caramel-500 hover:bg-caramel-600 text-white rounded-lg font-medium transition-colors"
             >
               {currentStep === steps.length - 1 ? 'Start Playing!' : 'Next →'}
             </button>
